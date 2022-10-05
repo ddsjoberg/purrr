@@ -7,7 +7,7 @@ where_at <- function(x, at, error_arg = caller_arg(at), error_call = caller_env(
   }
 
   if (is_quosures(at)) {
-    lifecycle::deprecate_soft("1.0.0", I("Using `vars()` in .at"))
+    lifecycle::deprecate_stop("1.0.0", I("Using `vars()` in .at"))
     check_installed("tidyselect", "for using tidyselect in `map_at()`.")
 
     at <- tidyselect::vars_select(.vars = names2(x), !!!at)
@@ -112,13 +112,13 @@ vctrs_vec_compat <- function(x) {
   if (is.null(x)) {
     list()
   } else if (is.pairlist(x)) {
-    lifecycle::deprecate_soft("1.0.0",
+    lifecycle::deprecate_stop("1.0.0",
       I("Use of pairlists in map functions"),
       details = "Please coerce explicitly with `as.list()`"
     )
     as.list(x)
   } else if (is_call(x) || is.expression(x)) {
-    lifecycle::deprecate_soft("1.0.0",
+    lifecycle::deprecate_stop("1.0.0",
       I("Use of calls and pairlists in map functions"),
       details = "Please coerce explicitly with `as.list()`"
     )
